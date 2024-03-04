@@ -1,10 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import css from './searchBar.module.css';
 import { filterFiltration } from '../../redux/filtersSlice';
+import { selectFilter } from '../../redux/selectors';
 
-export default function SearchBar() {
+export default function SearchBox() {
   const dispatch = useDispatch();
-  const filters = useSelector(state => state.filter.text);
+  const filters = useSelector(selectFilter);
+  // console.log(filters);
   const filter = event => dispatch(filterFiltration(event.target.value));
   return (
     <div className={css.container}>
