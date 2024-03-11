@@ -24,18 +24,12 @@ export const deleteContact = createAsyncThunk(
   }
 );
 
-// Додаємо обробник після видалення контакту
 export const deleteContactAndUpdateList = createAsyncThunk(
   'contacts/deleteContactAndUpdateList',
   async (taskId, thunkAPI) => {
     try {
-      // Викликаємо дію видалення контакту
       await thunkAPI.dispatch(deleteContact(taskId));
-      
-      // Оновлюємо список контактів після успішного видалення
       await thunkAPI.dispatch(fetchContacts());
-
-      // Повертаємо дані, які видалили
       return taskId;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
